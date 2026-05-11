@@ -474,8 +474,7 @@ class AccountManagementController extends Controller
                 $user->name        = $row['الطالب'];
                 $user->phone       = $phone;
                 $user->email       = $email;
-                $user->password    = Hash::make($row['كلمة المرور'] ?? '123456');
-                $user->type        = 'student';
+                $user->password    = Hash::make($request->password);                $user->type        = 'student';
                 $user->status      = 'active';
                 $user->is_approved = 1;
                 $user->save();
@@ -536,7 +535,8 @@ class AccountManagementController extends Controller
             $user->phone       = $phone;
             $user->email       = $request->email;
             $user->type        = 'student';
-            $user->password    = Hash::make('12345678');
+            // $user->password    = Hash::make('12345678'); (was creating password to 12345678 for every trainee)
+            $user->password    = Hash::make($request->password);
             $user->status      = $request->status;
             $user->is_approved = 1;
             $user->save();
@@ -763,8 +763,7 @@ class AccountManagementController extends Controller
                 $user->name        = $row['الخبير'];
                 $user->phone       = $phone;
                 $user->email       = $email;
-                $user->password    = Hash::make($row['كلمة المرور'] ?? '123456');
-                $user->type        = 'teacher';
+                $user->password    = Hash::make($request->password);                $user->type        = 'teacher';
                 $user->status      = 'active';
                 $user->is_approved = 1;
                 $user->save();
